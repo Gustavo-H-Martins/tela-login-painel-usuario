@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <!--
+ 
+    Linkedin: https://www.linkedin.com/in/gustavo-henrique-lopes-martins-361789192/
+    Git Hub: https://github.com/Gustavo-H-Martins
+  -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Associado</title>
+    <link rel="shortcut icon" href="favicon-login.ico" type="image/x-icon">
+    <style>
+      body{
+          font-family: Arial, Helvetica, sans-serif;
+          background-image: url('fundo-login.jpg');
+          background-size: cover;
+      }
+      #login{
+        font-size: 25px;
+        color: rgb(41, 4, 252);  
+        background-color: rgba(0, 0, 0, 0.9);
+          position: absolute;
+          padding: 65px;
+          border-radius: 20%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+    
+      }
+      input{
+          padding: 10px;
+          outline:none;
+          border: none;
+          font-size: 17px;
+          border-radius: 7px;
+
+      }
+
+      input:hover{
+        background-color: rgb(146, 251, 169);
+      }
+
+      #botao{
+        border: none;
+        padding: 10px;
+        width: 90%;
+        border-radius: 7px;
+        margin-left: 10px;
+        font-size: 18px;
+        
+      }
+
+      #botao:hover{
+          background-color: rgb(10, 45, 243);
+      } 
+
+      #titulo{
+        margin-top: 5px;
+        margin-bottom: 35px;  
+        text-align: center;
+      }
+
+          </style>
+
+          
+
+</head>
+<body>
+  
+<div id="login">
+    <h1 id="titulo">PROAUTO</h1>
+
+    <form>
+    <script>
+      function mascara_cpf(i){
+   
+        var v = i.value;
+        
+        if(isNaN(v[v.length-1])){
+           i.value = v.substring(0, v.length-1);
+           return;
+        }
+        
+        i.setAttribute("maxlength", "14");
+        if (v.length == 3 || v.length == 7) i.value += ".";
+        if (v.length == 11) i.value += "-";
+     
+     }
+    </script>
+    <input id="CPF" oninput="mascara_cpf(this)" type="text" placeholder="CPF do titular">
+    <br> <br>
+    <input id="Placa" type="text" placeholder="Placa" >
+    <br> <br>
+    <input type="submit" id="botao" onclick="logar(); return false">
+  
+  </form>
+
+</div>
+
+<script>
+
+  function logar(){
+
+  var login = document.getElementById('CPF').value;
+  var pass =  document.getElementById('Placa').value;
+
+  //Validação do login (o usuário e senha podem ser vizualizados simplesmente inspecionando a página, NÃO usar para fins que exigem segurança)
+  if (login == "123.456.789-10" && pass == "sua_placa") {
+    location.href = "painel-usuario.html";
+  } else {
+    alert("Senha incorreta");
+    location.reload()
+  }
+}
+
+</script>
+
+<span>Gustavo Lopes Martins</span>  
+</body>
+</html>

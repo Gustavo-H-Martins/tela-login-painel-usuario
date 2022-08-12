@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <!--
+ 
+    Linkedin: https://www.linkedin.com/in/gustavo-henrique-lopes-martins-361789192/
+    Git Hub: https://github.com/Gustavo-H-Martins
+  -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Associado</title>
+    <link rel="shortcut icon" href="favicon-login.ico" type="image/x-icon">
+    <style>
+      body{
+          font-family: Arial, Helvetica, sans-serif;
+          background-image: url('fundo-login.jpg');
+          background-size: cover;
+      }
+      #Painel{
+        font-size: 25px;
+        color: rgb(41, 4, 252);  
+        background-color: rgba(0, 0, 0, 0.9);
+          position: absolute;
+          padding: 100px;
+          border-radius: 20%;
+          top: 50%;
+          left: -25%;
+          transform: translate(50%, -50%);
+    
+      }
+      input{
+          padding: 10px;
+          outline:none;
+          border: none;
+          font-size: 17px;
+          border-radius: 7px;
+
+      }
+
+      input:hover{
+        background-color: rgb(146, 251, 169);
+      }
+
+      #botao{
+        border: none;
+        padding: 10px;
+        width: 90%;
+        border-radius: 7px;
+        margin-left: 10px;
+        font-size: 18px;
+        
+      }
+
+      #botao:hover{
+          background-color: rgb(10, 45, 243);
+      } 
+
+      #titulo{
+        margin-top: 5px;
+        margin-bottom: 35px;  
+        text-align: center;
+      }
+
+          </style>
+
+          
+
+</head>
+<body>
+  
+<div id="Painel">
+    <label>Usuário Logado:
+    <h1 id="titulo">Gustavo H. Lopes Martins</h1>
+
+    <form>
+    <label>CPF:
+    <input type="text" placeholder="123.456.789-10" readonly></label>
+    <br> <br>
+    <label>Placa:
+    <input type="text" placeholder="sua_placa" readonly></label>
+    <br> <br>
+    <label>Telefone:
+    <input  type="tel"  value="(31) 3490-9000" readonly></label>
+    <br> <br>
+    </form>
+    <script>   
+    function limpa_formulário_cep() {
+            //Limpa valores do formulário de cep.
+            document.getElementById('rua').value=("");
+            document.getElementById('bairro').value=("");
+            document.getElementById('cidade').value=("");
+            document.getElementById('uf').value=("");
+
+    }
+
+    function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+            //Atualiza os campos com os valores.
+            document.getElementById('rua').value=(conteudo.logradouro);
+            document.getElementById('bairro').value=(conteudo.bairro);
+            document.getElementById('cidade').value=(conteudo.localidade);
+            document.getElementById('uf').value=(conteudo.uf);
+
+        } //end if.
+        else {
+            //CEP não Encontrado.
+            limpa_formulário_cep();
+            alert("CEP não encontrado.");
+        }
+    }
+        
+    function pesquisacep(valor) {
+
+        //Nova variável "cep" somente com dígitos.
+        var cep = valor.replace(/\D/g, '');
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+
+            //Expressão regular para validar o CEP.
+            var validacep = /^[0-9]{8}$/;
+
+            //Valida o formato do CEP.
+            if(validacep.test(cep)) {
+
+                //Preenche os campos com "..." enquanto consulta webservice.
+                document.getElementById('rua').value="...";
+                document.getElementById('bairro').value="...";
+                document.getElementById('cidade').value="...";
+                document.getElementById('uf').value="...";
+
+
+                //Cria um elemento javascript.
+                var script = document.createElement('script');
+
+                //Sincroniza com o callback.
+                script.src = 'https://viacep.com.br/ws/'+ cep + '/json/?callback=meu_callback';
+
+                //Insere script no documento e carrega o conteúdo.
+                document.body.appendChild(script);
+
+            } //end if.
+            else {
+                //cep é inválido.
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        } //end if.
+        else {
+            //cep sem valor, limpa formulário.
+            limpa_formulário_cep();
+        }
+    };
+    </script>
+    <form method="get" action=".">
+        <label>Cep:
+        <input name="cep" type="text" id="cep" value="" size="10" maxlength="9"
+               onblur="pesquisacep(this.value);" /></label><br />      
+        <label>Rua:
+        <input name="rua" type="text" id="rua" size="60" /></label><br />
+        <label>Bairro:
+        <input name="bairro" type="text" id="bairro" size="40" /></label><br />
+        <br> <br>
+        <label>Cidade:
+        <input name="cidade" type="text" id="cidade" size="40" /></label>
+        <label>Estado:
+        <input name="uf" type="text" id="uf" size="2" /></label><br />
+      </form>
+
+    
+  
+
+</div>
+
+
+
+<span>Gustavo Lopes Martins</span>  
+</body>
+</html>
