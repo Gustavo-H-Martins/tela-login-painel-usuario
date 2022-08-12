@@ -95,8 +95,8 @@ do site ViaCEP que deu uma elegância ao projeto.
         }
     };
 
-## Tópicos do desafio : 
-        * O Associado se autentica pelo seu CPF :bookmark: e sua placa :oncoming_automobile:
+## Tópicos do desafio : :bookmark: :oncoming_automobile: :card_index:
+        * O Associado se autentica pelo seu CPF  e sua placa 
         * O Associado visualiza todos os seus dados mas só pode alterar o endereço.
 
 Foi muito divertido para mim esta experiência, gostaria de repetir, caso tenha alguma sugestão de melhoria, ou desafios, me mantenhoa disposição.    
